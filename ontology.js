@@ -26,8 +26,11 @@ function processResult(ontologies){
     result = [];
     for(let i=0; i<body.length; i++){
         temp = {};
-        temp['id'] = i;
-        temp['name'] = body[i]['ontologyId'];
+        temp['id'] = body[i]['ontologyId'];
+        temp['name'] = body[i]['config']['title'];
+        temp['description'] = body[i]['config']['description'];
+        temp['updated'] = body[i]['updated'];
+        temp['termsCount'] = body[i]['numberOfTerms'];
         result.push(temp);
     }
     return result;
