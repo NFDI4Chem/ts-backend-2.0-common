@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const size = 20;
-const baseUrl = "http://www.ebi.ac.uk/ols/api/ontologies?";
+const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies?";
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 
 async function getOntologies(page){  
