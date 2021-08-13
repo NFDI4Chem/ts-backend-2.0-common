@@ -14,7 +14,7 @@ app.get('/ontologies/:page', async function(req, res){
     res.send(data);   
 });
 
-app.get('/ontologies/count', async function(req, res){
+app.get('/ontologiescount', async function(req, res){
     let count = await ontology.ontologiesCount();
     res.send(count.toString())
 });
