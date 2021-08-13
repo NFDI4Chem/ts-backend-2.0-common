@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const size = 20;
+const size = 8;
 const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies?";
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 
