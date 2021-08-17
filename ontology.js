@@ -1,17 +1,26 @@
 const fetch = require('node-fetch');
-const size = 5;
+const size = 20;
 const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies?";
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 
-async function getOntologies(page){  
-    page = page - 1;  
-    let url = baseUrl + "page=" + page + "&size=" + size;       
-    let res =  await fetch(url, settings);
-    res = await res.json();    
-    return processResult(res);
+async function getOntologies(){  
+    var pageCount = await getPageCount();
+    for (let page=0; page < pageCount; page++){
+        let url = baseUrl + "page=" + page + "&size=" + size;       
+        let res =  await fetch(url, settings);
+        res = await res.json();  
+        if(page == 0){
+            var ontologies = processResult(res);
+        }
+        else{
+           ontologies = ontologies.concat(processResult(res));
+        }        
+    }
+
+    return ontologies;
 }
 
-async function getOntologiesCount(){
+async function getPageCount(){
     let url = baseUrl + "page=0&size=1";        
     let res =  await fetch(url, settings);
     res = await res.json();    
@@ -38,4 +47,3 @@ function processResult(ontologies){
 
 
 module.exports.getOntologies =  getOntologies;
-module.exports.ontologiesCount = getOntologiesCount;
