@@ -10,6 +10,11 @@ app.listen(port, () => {
 app.disable('etag');
 
 app.get('/ontologies', async function(req, res){
-    let data =  await ontology.getOntologies(req.params.page);    
+    let data =  await ontology.getOntologies();    
     res.send(data);   
+});
+
+app.get('/ontology/:id', async function(req, res){
+  let data =  await ontology.getOneOntology(req.params.id);    
+  res.send(data);   
 });
