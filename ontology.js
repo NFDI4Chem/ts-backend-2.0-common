@@ -53,8 +53,10 @@ function processResult(ontologies){
         temp['id'] = body[i]['ontologyId'];
         temp['name'] = body[i]['config']['title'];
         temp['description'] = body[i]['config']['description'];
-        temp['updated'] = body[i]['updated'];
+        temp['updated'] = body[i]['updated'].split('T')[0];
         temp['termsCount'] = body[i]['numberOfTerms'];
+        temp['individualsCount'] = body[i]['numberOfIndividuals'];
+        temp['propertiesCount'] = body[i]['numberOfProperties'];
         result.push(temp);
     }
     return result;
