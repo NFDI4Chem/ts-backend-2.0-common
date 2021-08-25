@@ -43,8 +43,9 @@ function processJson(jsonArray){
     let body = jsonArray['_embedded']['terms'];
     for(let i=0; i<body.length; i++){
         temp = {};
+        temp['id'] = i;
         temp['iri'] = body[i]['iri'];
-        temp['labe'] = body[i]['label'];
+        temp['label'] = body[i]['label'];
         temp['description'] = body[i]['description'];
         temp['ontologyId'] = body[i]['ontology_name'];
         temp['has_children'] = body[i]['has_children'];
