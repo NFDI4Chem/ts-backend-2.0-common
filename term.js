@@ -1,38 +1,17 @@
 const fetch = require('node-fetch');
 const ontologyModule = require('./ontology');
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
-const size = 800;
+const size = 100;
 
 
 
-async function termsTree(ontologyId){
-    try{
-        let terms = await getTerms(ontologyId);
-        return terms;
-
-
-
-
-    }
-    catch (e){
-        return e;
-    }
-    
-
-
-
-}
-
-
-
-
-async function getTerms(ontologyId){
+async function getRootTerms(ontologyId){
     try{
         let ontology = await ontologyModule.getOneOntology(ontologyId);
         let termsLink = ontology['_links']['terms']['href'];
-        let pageCount = await getPageCount(termsLink);
+        let pageCount = await getPageCount(termsLink + '/roots');
         for(let page=0; page < pageCount; page++){
-            let url = termsLink + "?page=" + page + "&size=" + size;      
+            let url = termsLink + "/roots?page=" + page + "&size=" + size;      
             let res =  await fetch(url, settings);
             res = await res.json();  
             if(page == 0){
@@ -58,6 +37,7 @@ async function getPageCount(url){
     return Math.ceil(answer['page']['totalElements'] / size);
 }
 
+
 function processJson(jsonArray){
     let result = [];
     let body = jsonArray['_embedded']['terms'];
@@ -80,5 +60,4 @@ function processJson(jsonArray){
 }
 
 
-
-module.exports.termsTree = termsTree;
+module.exports.getRootTerms = getRootTerms;

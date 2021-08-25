@@ -20,7 +20,7 @@ app.get('/ontology/:id', async function(req, res){
   res.send(data);   
 });
 
-app.get('/terms/:ontologyId', async function(req, res){
-    let data =  await termsModule.termsTree(req.params.ontologyId);    
+app.get('/terms/roots/:ontologyId', async function(req, res){
+    let data =  await termsModule.getRootTerms(req.params.ontologyId);    
     res.send(data); 
 });
