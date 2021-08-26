@@ -27,9 +27,66 @@ async function getRootTerms(ontologyId){
     catch (e){
         return e.message ;
     }
-    
-
 }
+
+
+async function getTerms(ontologyId){
+    try{
+        let rootTerms = await getRootTerms(ontologyId);
+        for(let i=0; i < rootTerms.length; i++){
+            if(rootTerms[i].has_children){
+                    let children_link =  rootTerms[i]['children_link'];
+                    
+                    rootTerms[i]['children'] = await getChildren(children_link);
+            }
+            
+        }
+        return rootTerms;
+    }
+    catch (e){
+        return e.message ;
+    }
+   
+}
+
+
+async function getChildren(link){
+    try{
+        let result = await fetch(link, settings);
+        result = await result.json();
+        let body = result['_embedded']['terms'];
+        let children = [];
+        for(let i=0; i<body.length; i++){
+            temp = {};
+            temp['id'] = i;
+            temp['iri'] = body[i]['iri'];
+            temp['label'] = body[i]['label'];
+            temp['description'] = body[i]['description'];
+            temp['ontologyId'] = body[i]['ontology_name'];
+            temp['has_children'] = body[i]['has_children'];
+            temp['is_root'] = body[i]['is_root'];
+            temp['short_form'] = body[i]['short_form'];
+            temp['children'] = []
+
+            if(body[i]['has_children']){
+                temp['children'] = await getChildren(body[i]['_links']['children']['href']); 
+                
+            }
+
+            children.push(temp);
+
+        }
+        
+        return children;
+    }
+    catch (e){
+        return e.message ;
+    }
+    
+}
+
+
+
 
 async function getPageCount(url){
     let answer = await fetch(url, settings);
@@ -51,9 +108,11 @@ function processJson(jsonArray){
         temp['has_children'] = body[i]['has_children'];
         temp['is_root'] = body[i]['is_root'];
         temp['short_form'] = body[i]['short_form'];
-        if(body[i]['has_children']){
-            temp['children'] = body[i]['_links']['children']['href'];
+        if(temp['has_children']){
+            temp['children_link'] = body[i]['_links']['children']['href'];
         }
+        temp['children'] = [];
+        
         
         result.push(temp);
     }
@@ -61,4 +120,4 @@ function processJson(jsonArray){
 }
 
 
-module.exports.getRootTerms = getRootTerms;
+module.exports.getTerms = getTerms;
