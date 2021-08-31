@@ -10,6 +10,12 @@ app.listen(port, () => {
 
 app.disable('etag');
 
+app.get('/', async function(req, res){
+  let data = [];
+  data.push("OK ts backend is running");
+  res.send(data);   
+});
+
 app.get('/ontologies', async function(req, res){
     let data =  await ontology.getOntologies();    
     res.send(data);   
