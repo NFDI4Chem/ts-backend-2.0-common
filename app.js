@@ -1,8 +1,11 @@
 const express = require('express')
 const ontology = require('./ontology');
 const termsModule = require('./term');
-const app = express()
-const port = 8000
+var bodyParser = require('body-parser')
+const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+const port = 8000;
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
@@ -26,7 +29,13 @@ app.get('/ontology/:id', async function(req, res){
   res.send(data);   
 });
 
-app.get('/terms/:ontologyId', async function(req, res){
-    let data =  await termsModule.getTerms(req.params.ontologyId);    
+app.get('/rootterms/:ontologyId', async function(req, res){
+    let data =  await termsModule.getRootTerms(req.params.ontologyId);    
     res.send(data); 
+});
+
+app.post('/termchildren', async function(req, res){
+  // console.log(req.body.childrenLink);
+  let data =  await termsModule.getChildren(req.body.childrenLink);    
+  res.send(data); 
 });
