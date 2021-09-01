@@ -63,8 +63,9 @@ function processJson(jsonArray){
         temp['has_children'] = body[i]['has_children'];
         temp['is_root'] = body[i]['is_root'];
         temp['short_form'] = body[i]['short_form'];
+        temp['children'] = [];
         if(body[i]['has_children']){
-            temp['children'] = body[i]['_links']['children']['href'];
+            temp['childrenLink'] = body[i]['_links']['children']['href'];
         }
         
         result.push(temp);
