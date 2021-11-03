@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const size = 20;
-const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies";
+const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies/classification/collection/NFDI4CHEM";
+const baseUrl2 = "http://service.tib.eu/ts4tib/api/ontologies"
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 
 async function getOntologies(){  
@@ -23,7 +24,7 @@ async function getOntologies(){
 
 async function getOneOntology(id){
     try{
-        let url = baseUrl + "/" + id;
+        let url = baseUrl2 + "/" + id;
         let result = await fetch(url, settings);
         result = await result.json();
         return result;
