@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const size = 20;
-const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies/classification/collection/NFDI4CHEM";
+const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies/filterby?schema=collection&classification=NFDI4CHEM";
 const baseUrl2 = "http://service.tib.eu/ts4tib/api/ontologies"
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 
