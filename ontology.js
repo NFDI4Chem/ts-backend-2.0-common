@@ -9,7 +9,7 @@ const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 async function getOntologies(){  
     var pageCount = await getPageCount();
     for (let page=0; page < pageCount; page++){
-        let url = baseUrl + "&page=" + page + "&size=" + size;       
+        let url = baseUrl + "?page=" + page + "&size=" + size;       
         let res =  await fetch(url, settings);
         res = await res.json();  
         if(page == 0){
