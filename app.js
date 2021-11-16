@@ -23,6 +23,14 @@ app.get('/ontologies', async function(req, res){
     let data =  await ontology.getOntologies();    
     res.send(data);   
 });
+app.get('/ontologies/chemistry', async function(req, res){
+  let data =  await ontology.getChemOntologies();    
+  res.send(data);   
+});
+app.get('/ontologies/engineering', async function(req, res){
+  let data =  await ontology.getIngOntologies();    
+  res.send(data);   
+});
 
 app.get('/ontology/:id', async function(req, res){
   let data =  await ontology.getOneOntology(req.params.id);    
