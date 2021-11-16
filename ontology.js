@@ -1,9 +1,6 @@
 const fetch = require('node-fetch');
 const size = 20;
 const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies"
-const baseUrl1 = "https://service.tib.eu/ts4tib/api/ontologies/filterby?schema=collection&classification=NFDI4CHEM";
-const baseUrl2 = "https://service.tib.eu/ts4tib/api/ontologies/filterby?schema=collection&classification=NFDI4ING"
-
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 
 async function getOntologies(){  
@@ -23,41 +20,6 @@ async function getOntologies(){
     return ontologies;
 }
 
-async function getChemOntologies(){  
-    var pageCount = await getPageCount();
-    for (let page=0; page < pageCount; page++){
-        let url = baseUrl1 + "&page=" + page + "&size=" + size;       
-        let res =  await fetch(url, settings);
-        res = await res.json();  
-        if(page == 0){
-            var ontologies = processResult(res);
-        }
-        else{
-           ontologies = ontologies.concat(processResult(res));
-        }        
-    }
-
-    return ontologies;
-}
-
-async function getIngOntologies(){  
-    var pageCount = await getPageCount();
-    for (let page=0; page < pageCount; page++){
-        let url = baseUrl2 + "&page=" + page + "&size=" + size;       
-        let res =  await fetch(url, settings);
-        res = await res.json();  
-        if(page == 0){
-            var ontologies = processResult(res);
-        }
-        else{
-           ontologies = ontologies.concat(processResult(res));
-        }        
-    }
-
-    return ontologies;
-}
-
-
 async function getOneOntology(id){
     try{
         let url = baseUrl + "/" + id;
@@ -70,7 +32,6 @@ async function getOneOntology(id){
     }
 
 }
-
 
 async function getPageCount(){
     let url = baseUrl + "&page=0&size=1";        
@@ -101,6 +62,4 @@ function processResult(ontologies){
 
 
 module.exports.getOntologies =  getOntologies;
-module.exports.getChemOntologies =  getChemOntologies;
-module.exports.getIngOntologies =  getIngOntologies;
 module.exports.getOneOntology = getOneOntology;
