@@ -1,8 +1,10 @@
 const express = require('express')
+var path = require('path');
 const ontology = require('./app_modules/ontology');
 const chemOntology = require('./app_modules/chemOntology');
 const ingOntology = require('./app_modules/ingOntology');
 const termsModule = require('./app_modules/term');
+const propertiesModule = require('./app_modules/property');
 var bodyParser = require('body-parser')
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -45,7 +47,16 @@ app.get('/rootterms/:ontologyId', async function(req, res){
 });
 
 app.post('/termchildren', async function(req, res){
-  // console.log(req.body.childrenLink);
   let data =  await termsModule.getChildren(req.body.childrenLink);    
+  res.send(data); 
+});
+
+app.get('/rootproperties/:ontologyId', async function(req, res){
+  let data =  await propertiesModule.getRootProperties(req.params.ontologyId);    
+  res.send(data); 
+});
+
+app.post('/propertychildren', async function(req, res){
+  let data =  await propertiesModule.getChildren(req.body.childrenLink);    
   res.send(data); 
 });

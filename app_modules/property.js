@@ -4,23 +4,23 @@ const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 const size = 100;
 
 
-async function getRootTerms(ontologyId){
+async function getRootProperties(ontologyId){
     try{
         let ontology = await ontologyModule.getOneOntology(ontologyId);
-        let termsLink = ontology['_links']['terms']['href'];
-        let pageCount = await getPageCount(termsLink + '/roots');
+        let propertiesLink = ontology['_links']['properties']['href'];
+        let pageCount = await getPageCount(propertiesLink + '/roots');
         for(let page=0; page < pageCount; page++){
-            let url = termsLink + "/roots?page=" + page + "&size=" + size;      
+            let url = propertiesLink + "/roots?page=" + page + "&size=" + size;      
             let res =  await fetch(url, settings);
             res = await res.json();  
             if(page == 0){
-                var terms = processJson(res);
+                var props = processJson(res);
             }
             else{
-                terms = terms.concat(processJson(res));
+                props = props.concat(processJson(res));
             }      
         }
-        return terms;
+        return props;
 
     }
     catch (e){
@@ -78,5 +78,5 @@ function processJson(jsonArray){
 }
 
 
-module.exports.getRootTerms = getRootTerms;
+module.exports.getRootProperties = getRootProperties;
 module.exports.getChildren =getChildren;
