@@ -51,7 +51,7 @@ async function getPageCount(url){
 
 function processJson(jsonArray){
     let result = [];
-    let body = jsonArray['_embedded']['terms'];
+    let body = jsonArray['_embedded']['properties'];
     for(let i=0; i<body.length; i++){
         temp = {};
         temp['id'] = i;
