@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const ontologyModule = require('./app_modules/ontology');
+const ontologyModule = require('./ontology');
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 const size = 100;
 

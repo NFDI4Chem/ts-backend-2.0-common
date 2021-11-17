@@ -1,5 +1,4 @@
 const express = require('express')
-var path = require('path');
 const ontology = require('./app_modules/ontology');
 const chemOntology = require('./app_modules/chemOntology');
 const ingOntology = require('./app_modules/ingOntology');
