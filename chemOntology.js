@@ -39,7 +39,7 @@ async function getOneOntology(id){
 
 
 async function getPageCount(){
-    let url = baseUrl + "&page=0&size=1";        
+    let url = baseUrl1 + "&page=0&size=1";        
     let res =  await fetch(url, settings);
     res = await res.json();    
     return Math.ceil(res['page']['totalElements'] / size)
