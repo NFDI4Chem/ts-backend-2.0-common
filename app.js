@@ -1,5 +1,7 @@
 const express = require('express')
 const ontology = require('./ontology');
+const chemOntology = require('./chemOntology');
+const ingOntology = require('./ingOntology');
 const termsModule = require('./term');
 var bodyParser = require('body-parser')
 const app = express();
@@ -24,11 +26,11 @@ app.get('/ontologies', async function(req, res){
     res.send(data);   
 });
 app.get('/ontologies/chemistry', async function(req, res){
-  let data =  await ontology.getChemOntologies();    
+  let data =  await chemOntology.getChemOntologies();    
   res.send(data);   
 });
 app.get('/ontologies/engineering', async function(req, res){
-  let data =  await ontology.getIngOntologies();    
+  let data =  await ingOntology.getIngOntologies();    
   res.send(data);   
 });
 
