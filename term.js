@@ -64,6 +64,11 @@ function processJson(jsonArray){
         temp['is_root'] = body[i]['is_root'];
         temp['short_form'] = body[i]['short_form'];
         temp['children'] = [];
+        temp['definition'] = body[i]['annotation']['definition'];
+        temp['example_usage'] = body[i]['annotation']['example of usage'];
+        temp['editor note'] = body[i]['annotation']['editor note'];
+        temp['isDefinedBy'] = body[i]['annotation']['isDefinedBy'];
+
         if(body[i]['has_children']){
             temp['childrenLink'] = body[i]['_links']['children']['href'];
         }
