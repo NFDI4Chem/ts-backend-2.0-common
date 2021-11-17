@@ -1,12 +1,15 @@
 const fetch = require('node-fetch');
 const size = 20;
 const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies"
+const baseUrl2 = "https://service.tib.eu/ts4tib/api/ontologies/filterby?schema=collection&classification=NFDI4ING";
+
+
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 
-async function getOntologies(){  
+async function getIngOntologies(){  
     var pageCount = await getPageCount();
     for (let page=0; page < pageCount; page++){
-        let url = baseUrl + "?page=" + page + "&size=" + size;       
+        let url = baseUrl2 + "&page=" + page + "&size=" + size;       
         let res =  await fetch(url, settings);
         res = await res.json();  
         if(page == 0){
@@ -19,6 +22,7 @@ async function getOntologies(){
 
     return ontologies;
 }
+
 
 async function getOneOntology(id){
     try{
@@ -33,8 +37,9 @@ async function getOneOntology(id){
 
 }
 
+
 async function getPageCount(){
-    let url = baseUrl + "?page=0&size=1";        
+    let url = baseUrl2 + "&page=0&size=1";        
     let res =  await fetch(url, settings);
     res = await res.json();    
     return Math.ceil(res['page']['totalElements'] / size)
@@ -61,5 +66,5 @@ function processResult(ontologies){
 }
 
 
-module.exports.getOntologies =  getOntologies;
+module.exports.getIngOntologies =  getIngOntologies;
 module.exports.getOneOntology = getOneOntology;
