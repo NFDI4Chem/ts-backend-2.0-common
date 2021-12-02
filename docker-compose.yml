@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
 
-  sample:
+  ts-backend2.0:
     container_name: backend2.0
     build:
       context: .
@@ -11,6 +11,6 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - 8001:8000
+      - 8000
     environment:
       - CHOKIDAR_USEPOLLING=true
