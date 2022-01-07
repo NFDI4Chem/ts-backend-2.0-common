@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const size = 20;
 const baseUrl = "http://service.tib.eu/ts4tib/api/ontologies"
-const baseUrl1 = "https://service.tib.eu/ts4tib/api/ontologies/filterby?schema=collection&classification=NFDI4CHEM";
+//const baseUrl1 = "https://service.tib.eu/ts4tib/api/ontologies/filterby?schema=collection&classification=NFDI4CHEM";
 
 
 const settings = { method: "Get", headers: {'Accept': 'application/json'}};
@@ -9,7 +9,7 @@ const settings = { method: "Get", headers: {'Accept': 'application/json'}};
 async function getChemOntologies(){  
     var pageCount = await getPageCount();
     for (let page=0; page < pageCount; page++){
-        let url = baseUrl1 + "&page=" + page + "&size=" + size;       
+        let url = baseUrl + "/filterby?schema=collection&classification=NFDI4CHEM" + "&page=" + page + "&size=" + size;       
         let res =  await fetch(url, settings);
         res = await res.json();  
         if(page == 0){
@@ -39,7 +39,7 @@ async function getOneOntology(id){
 
 
 async function getPageCount(){
-    let url = baseUrl1 + "&page=0&size=1";        
+    let url = baseUrl + "/filterby?schema=collection&classification=NFDI4CHEM" + "&page=0&size=1";        
     let res =  await fetch(url, settings);
     res = await res.json();    
     return Math.ceil(res['page']['totalElements'] / size)
