@@ -35,8 +35,8 @@ app.get('/ontologies/engineering', async function(req, res){
   res.send(data);   
 });
 
-app.get('/ontologies/:id', async function(req, res){
-  let data =  await ontology.getOneOntology(req.params.id);    
+app.get('/ontologies/:ontologyId', async function(req, res){
+  let data =  await ontology.getOneOntology(req.params.ontologyId);    
   res.send(data);   
 });
 
