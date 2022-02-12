@@ -4,6 +4,10 @@ The common backend for the Terminology Service V2.0
 
 This backend is used by TIB-Termonology-Service-Library (https://git.tib.eu/lab-linked-scientific-knowledge/terminology-service/tib-terminology-service-library) to fetch the ontology-related information from http://service.tib.eu/ts4tib/api/
 
+Configuration as middleware / backend with express
+https://expressjs.com/en/resources/middleware/cors.html
+
+
 ### Run
 in the project directory run: (default port 8000)
         
