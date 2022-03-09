@@ -16,8 +16,8 @@ const port = 8000;
 
 var whitelist = ['http://localhost', 'http://ols02.develop.service.tib.eu'];
 var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
@@ -26,9 +26,9 @@ var corsOptions = {
 }
 
 
-var corsOptions = {
+/* var corsOptions = {
   origin: "http://localhost",
-};
+}; */
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
