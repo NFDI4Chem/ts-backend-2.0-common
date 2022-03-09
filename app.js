@@ -13,6 +13,19 @@ app.use(bodyParser.json());
 app.use(cors());
 const port = 8000;
 
+
+var whitelist = ['http://localhost', 'http://ols02.develop.service.tib.eu'];
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+
 var corsOptions = {
   origin: "http://localhost",
 };
