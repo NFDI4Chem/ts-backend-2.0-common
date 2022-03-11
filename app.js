@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 const port = 8000;
+const host = "localhost";
 
 
 var whitelist = ['http://localhost', 'http://ols02.develop.service.tib.eu'];
@@ -30,8 +31,8 @@ var corsOptions = {
   origin: "http://localhost",
 }; */
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(port, host, () => {
+  console.log(`Example app listening at ${host}:${port}`);
 });
 
 app.disable("etag");
