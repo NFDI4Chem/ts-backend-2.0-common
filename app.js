@@ -47,6 +47,10 @@ app.get("/ontologies", cors(), async function (req, res) {
   let data = await ontology.getOntologies();
   res.send(data);
 });
+app.get("/ts/api/ontologies/chemistry", cors(), async function (req, res) {
+  let data = await chemOntology.getChemOntologies();
+  res.send(data);
+});
 app.get("/ontologies/chemistry", cors(), async function (req, res) {
   let data = await chemOntology.getChemOntologies();
   res.send(data);
