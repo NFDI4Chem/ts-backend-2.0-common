@@ -12,24 +12,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 const port = 8000;
-const host = "localhost";
-
-
-var whitelist = ['http://localhost', 'http://ols02.develop.service.tib.eu'];
-var corsOptions = {
-    origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-
-
-/* var corsOptions = {
-  origin: "http://localhost",
-}; */
 
 app.listen(port, host, () => {
   console.log(`Example app listening at ${host}:${port}`);
@@ -47,15 +29,12 @@ app.get("/ontologies", cors(), async function (req, res) {
   let data = await ontology.getOntologies();
   res.send(data);
 });
-app.get("/ts/api/ontologies/chemistry", cors(), async function (req, res) {
-  // let data = await chemOntology.getChemOntologies();
-  // res.send(data);
-  res.send("Hello World");
-});
+
 app.get("/ontologies/chemistry", cors(), async function (req, res) {
   let data = await chemOntology.getChemOntologies();
   res.send(data);
 });
+
 app.get("/ontologies/engineering", cors(), async function (req, res) {
   let data = await ingOntology.getIngOntologies();
   res.send(data);
