@@ -17,4 +17,11 @@ in the project directory run: (default port 8000)
 
 - `/ontologies`: returns all ontologies metadata. The returned object is a JSON array. (look at: `ontology.js`)
 
-- `/ontology/:id`: returns metadata (json format) about one ontology based on Id. 
+- `/ontologies/:id`: returns metadata (json format) about one ontology based on Id. 
+
+- `/ontologies/chemistry`: returns metadata about chemistry ontologies 
+
+
+### Dockers
+
+- `backend2.0`: container for backend API services
