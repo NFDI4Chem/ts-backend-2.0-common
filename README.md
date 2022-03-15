@@ -25,3 +25,6 @@ in the project directory run: (default port 8000)
 ### Dockers
 
 - `backend2.0`: container for backend API services
+- `docker-compose build`: to build containers
+- `docker-compose up -d`: create and start the containers in the background and leave them running
+
