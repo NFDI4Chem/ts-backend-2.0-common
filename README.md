@@ -9,9 +9,9 @@ https://expressjs.com/en/resources/middleware/cors.html
 
 
 ### Run
-in the project directory run: (default port 8000)
-        
-        > node app.js
+- Clone the project (preferrably from master branch)
+- Navigate into project directory and run `npm install` in terminal to install necessary node modules and dependencies
+- in the project directory run (default port 8000): `node app.js`
 
 ### Currently supported functions:
 
