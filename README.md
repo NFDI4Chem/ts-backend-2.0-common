@@ -9,12 +9,22 @@ https://expressjs.com/en/resources/middleware/cors.html
 
 
 ### Run
-in the project directory run: (default port 8000)
-        
-        > node app.js
+- Clone the project (preferrably from master branch)
+- Navigate into project directory and run `npm install` in terminal to install necessary node modules and dependencies
+- in the project directory run (default port 8000): `node app.js`
 
 ### Currently supported functions:
 
 - `/ontologies`: returns all ontologies metadata. The returned object is a JSON array. (look at: `ontology.js`)
 
-- `/ontology/:id`: returns metadata (json format) about one ontology based on Id. 
+- `/ontologies/:id`: returns metadata (json format) about one ontology based on Id. 
+
+- `/ontologies/chemistry`: returns metadata about chemistry ontologies 
+
+
+### Dockers
+
+- `backend2.0`: container for backend API services
+- `docker-compose build`: to build containers
+- `docker-compose up -d`: create and start the containers in the background and leave them running
+
