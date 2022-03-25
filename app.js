@@ -13,6 +13,11 @@ app.use(bodyParser.json());
 app.use(cors());
 const port = 8080;
 
+app.get('/cors', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.send({ "msg": "This has CORS enabled" })
+  })
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
